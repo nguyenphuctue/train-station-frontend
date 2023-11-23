@@ -1,0 +1,183 @@
+<div class="breadcrumb" style="padding-bottom: 24px;">
+    <nz-breadcrumb>
+        <nz-breadcrumb-item>Report</nz-breadcrumb-item>
+        <nz-breadcrumb-item>Details</nz-breadcrumb-item>
+    </nz-breadcrumb>
+</div>
+
+<nz-card nzTitle="Details Report">
+
+    <div class="container">
+        <div class="info">
+            <form nz-form [nzLayout]="'vertical'">
+                <nz-form-item style="margin-bottom: 0px;">
+                    <nz-form-control class="actions">
+                        <button nz-button nzType="default"
+                            style="margin-right: 10px;"
+                            routerLink="/report/list">
+                            <span nz-icon nzType="left"></span>
+                            Back to list
+                        </button>
+                        <button nz-button nzType="default"
+                            (click)="showModalPreview()">
+                            <span nz-icon nzType="download" nzTheme="outline"></span>
+                            Download
+                        </button>
+                        <nz-modal [(nzVisible)]="isVisiblePreview"
+                            nzTitle="Preview Report"
+                            [nzWidth]="1000"
+                            nzOkText="Download"
+                            (nzOnCancel)="handlePreviewCancel()"
+                            (nzOnOk)="handlePreviewOk()">
+                            <ng-container *nzModalContent>
+                                <div class="report-preview-container">
+                                    <div class="report-preview-content">
+                                        <div style="text-align: center; 
+                                                font-size: 18px;
+                                                font-weight: bold;
+                                                margin-bottom: 20px;">
+                                            <span>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT
+                                                NAM</span>
+                                            <br>
+                                            <span>Độc lập - Tự do - Hạnh phúc</span>
+                                            <br>
+                                            <span>----------</span>
+                                        </div>
+                                        <div
+                                            style="text-align: end; margin-bottom: 100px;">
+                                            <span>
+                                                <i>Hà Nội, ngày 1 tháng 11 năm
+                                                    2023</i>
+                                            </span>
+                                        </div>
+                                        <div class="report-preview-title">
+                                            BÁO CÁO TÌNH TRẠNG GA TÀU
+                                        </div>
+                                        <div class="report-preview-body">
+                                            <!-- Add your report content here -->
+                                            <div>
+                                                <span style="font-weight: bold;">Tên
+                                                    ga tàu: </span>
+                                                <span>{{
+                                                    trainStation.nameStation }}</span>
+                                                <br>
+                                                <span style="font-weight: bold;">Địa
+                                                    chỉ: </span>
+                                                <span>{{ trainStation.address }}</span>
+                                                <br>
+                                                <span style="font-weight: bold;">Chủ
+                                                    sở hữu: </span>
+                                                <span> Đường sắt Việt Nam
+                                                </span>
+                                                <br>
+                                                <span style="font-weight: bold;">Tọa
+                                                    độ: </span>
+                                                <span> {{trainStation.latitude}}
+                                                    B,
+                                                    {{trainStation.longitude}} Đ
+                                                </span>
+                                                <br>
+                                                <span style="font-weight: bold;">Tính
+                                                    chất ga tàu: </span>
+                                                <span>
+                                                    {{trainStation.propertiesOfStation}}</span>
+                                                <br>
+                                                <span style="font-weight: bold;">Số
+                                                    lượng hành khách: </span>
+                                                <span> 5000 </span>
+                                                <br>
+                                                <span style="font-weight: bold;">Tình
+                                                    trạng ga tàu: </span>
+                                                <span> {{report.state}} </span>
+                                                <br>
+                                            </div>
+                                            <div style="margin-top: 10px;">
+                                                <span style="font-weight: bold;">
+                                                    Mô tả chi tiết:
+                                                </span>
+                                                <br>
+                                                <span>{{report.description}}</span>
+                                            </div>
+                                            <div
+                                                style="text-align: end; margin-top: 100px;">
+                                                <span
+                                                    style="font-weight: bold; margin-right: 100px;">Người
+                                                    báo cáo</span>
+                                                <br>
+                                                <br>
+                                                <span
+                                                    style="margin-right: 90px;">Nguyễn
+                                                    Phúc Tuệ</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </nz-modal>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzFor="title">Title</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input name="title" type="text" readonly
+                            [(ngModel)]="report.title">
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzFor="trainStation">Train station</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input name="trainStation" type="text" readonly
+                            [(ngModel)]="nameStation">
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzFor="state">State</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input name="state" type="text" readonly
+                            [(ngModel)]="report.state">
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzFor="passenger">Passenger</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input name="passenger" type="number"
+                            readonly
+                            [(ngModel)]="report.passenger">
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzFor="description">Description</nz-form-label>
+                    <nz-form-control>
+                        <textarea nz-input name="description" nzType="textarea"
+                            readonly
+                            [(ngModel)]="report.description"></textarea>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control class="actions">
+                        <button nz-button nzType="primary"
+                            style="margin-right: 10px;"
+                            [routerLink]="'/report/edit/' + id">
+                            <span nz-icon nzType="edit" nzTheme="outline"></span>
+                            Edit
+                        </button>
+                        <button nz-button nzType="primary" nzDanger
+                            (click)="showModalConfrimDelete()">
+                            <span nz-icon nzType="delete" nzTheme="outline"></span>
+                            Delete
+                        </button>
+                        <nz-modal [(nzVisible)]="isVisibleConfirmDelete"
+                            nzTitle="Confirm Delete Report"
+                            (nzOnCancel)="handleDeleteCancel()"
+                            (nzOnOk)="handleDeleteOk()">
+                            <ng-container *nzModalContent>
+                                <p>Are you sure you want to delete the report?</p>
+                            </ng-container>
+                        </nz-modal>
+                    </nz-form-control>
+                </nz-form-item>
+            </form>
+        </div>
+    </div>
+</nz-card>

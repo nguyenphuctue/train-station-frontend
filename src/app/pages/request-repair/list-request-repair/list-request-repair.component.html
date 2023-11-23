@@ -1,0 +1,100 @@
+<div class="breadcrumb" style="padding-bottom: 24px;">
+    <nz-breadcrumb>
+        <nz-breadcrumb-item>Request Repairs</nz-breadcrumb-item>
+        <nz-breadcrumb-item>List</nz-breadcrumb-item>
+    </nz-breadcrumb>
+</div>
+
+<nz-card nzTitle="List Request Repairs">
+
+    <div style="text-align: right; margin-bottom: 10px;">
+        <button nz-button nzType="primary">
+            <a [routerLink]="'/technical-status/list'">+ Add Request Repair</a>
+        </button>
+    </div>
+
+    <nz-space style="width: 100%; margin-bottom: 3%;">
+        <nz-input-group nzSearch [nzAddOnAfter]="searchButton"
+            style="padding-right: 20%;">
+            <input type="text" nz-input placeholder="Input name train station"
+                (keydown.enter)="fetchData()"
+                [(ngModel)]="keySearch" />
+        </nz-input-group>
+        <ng-template #searchButton>
+            <button nz-button nzType="default" nzSearch
+                (click)="fetchData()">
+                <span nz-icon nzType="search" nzTheme="outline"></span>
+            </button>
+        </ng-template>
+
+        <button nz-button nzType="default"
+            (click)="fetchData()">Filter:
+        </button>
+        <nz-select [(ngModel)]="filterState" style="width: 300px;">
+            <nz-option *ngFor="let state of states"
+                [nzLabel]="state.label"
+                [nzValue]="state.value">
+            </nz-option>
+        </nz-select>
+
+        <button nz-button nzType="default" style="margin-left: 1%;"
+            (click)="fetchData()">Sort:
+        </button>
+        <nz-select [(ngModel)]="sortDateChecking" style="width: 350px;">
+            <nz-option nzValue nzLabel="None"></nz-option>
+            <nz-option nzValue="dateChecking" nzLabel="Date Checking"></nz-option>
+        </nz-select>
+    </nz-space>
+
+    <nz-table #basicTable
+        [nzFrontPagination]="false"
+        [nzData]="technicalStatusList"
+        [nzLoading]="loading"
+        [nzTotal]="total"
+        [(nzPageIndex)]="pageIndex"
+        [(nzPageSize)]="pageSize"
+        (nzPageIndexChange)="onPageIndexChange($event)"
+        (nzPageSizeChange)="onPageSizeChange($event)">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Train Station</th>
+                <th>Period Of Checking</th>
+                <th>Date Checking</th>
+                <th>State</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of basicTable.data">
+                <td>{{ data.id }}</td>
+                <td>{{ data.trainStationResponse.nameStation }}</td>
+                <td>{{ data.periodOfChecking }}</td>
+                <td>{{ data.dateChecking | date:'dd-MM-yyyy'}}</td>
+                <td>
+                    <nz-tag [nzColor]="getStyleOfState(data.state)">{{ data.state }}</nz-tag>
+                </td>
+                <td>{{ data.description.length > 30 ? data.description.slice(0,
+                    30)
+                    + '...' : data.description }}</td>
+                <td>
+                    <button (click)="showModalConfrimDelete()"
+                        nz-button nzType="primary">
+                        <span nz-icon nzType="check" nzTheme="outline"></span>
+                        Done
+                    </button>
+                    <nz-modal [(nzVisible)]="isVisibleConfirmDelete"
+                        nzTitle="Confirm Delete Request Repair"
+                        (nzOnCancel)="handleCancel()"
+                        (nzOnOk)="handleOk(data.id)">
+                        <ng-container *nzModalContent>
+                            <p>Are you sure you want to delete the request
+                                repair?</p>
+                        </ng-container>
+                    </nz-modal>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+</nz-card>

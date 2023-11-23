@@ -1,0 +1,99 @@
+<div class="breadcrumb" style="padding-bottom: 24px;">
+    <nz-breadcrumb>
+        <nz-breadcrumb-item>Technical Status</nz-breadcrumb-item>
+        <nz-breadcrumb-item>Details</nz-breadcrumb-item>
+    </nz-breadcrumb>
+</div>
+
+<nz-card nzTitle="Details Technical Status">
+
+    <div class="container">
+        <div class="info">
+            <form nz-form [nzLayout]="'vertical'">
+                <nz-form-item style="margin-bottom: 0px;">
+                    <nz-form-control class="actions">
+                        <button nz-button nzType="default"
+                            routerLink="/technical-status/list">
+                            <span nz-icon nzType="left"></span>
+                            Back to list
+                        </button>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzFor="trainStation">Train station</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input name="trainStation" type="text" readonly
+                            [(ngModel)]="nameStation">
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzFor="state">State</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input name="state" type="text" readonly
+                            [(ngModel)]="technicalStatus.state">
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzFor="periodOfChecking">Period Of Checking</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input name="periodOfChecking" type="number"
+                            readonly
+                            [(ngModel)]="technicalStatus.periodOfChecking">
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzFor="dateChecking">Date Checking</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input name="dateChecking" type="text" readonly
+                            [(ngModel)]="technicalStatus.dateChecking">
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzFor="description">Description</nz-form-label>
+                    <nz-form-control>
+                        <textarea nz-input name="description" nzType="textarea"
+                            readonly
+                            [(ngModel)]="technicalStatus.description"></textarea>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label>Request Repair: &nbsp;
+                        <label nz-checkbox
+                            [(ngModel)]="technicalStatus.requestRepair"
+                            name="requestRepair" nzDisabled></label>
+                    </nz-form-label>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label>Image</nz-form-label>
+                    <nz-form-control>
+                        <img class="image-item" nz-image
+                            *ngFor="let url of imageUrls" [nzSrc]="url" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control class="actions">
+                        <button nz-button nzType="primary"
+                            style="margin-right: 10px;"
+                            [routerLink]="'/technical-status/edit/' + id">
+                            <span nz-icon nzType="edit" nzTheme="outline"></span>
+                            Edit
+                        </button>
+                        <button nz-button nzType="primary" nzDanger
+                            (click)="showModalConfrimDelete()">
+                            <span nz-icon nzType="delete" nzTheme="outline"></span>
+                            Delete
+                        </button>
+                        <nz-modal [(nzVisible)]="isVisibleConfirmDelete"
+                            nzTitle="Confirm Delete Technical Status"
+                            (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+                            <ng-container *nzModalContent>
+                                <p>Are you sure you want to delete the technical
+                                    status?</p>
+                            </ng-container>
+                        </nz-modal>
+                    </nz-form-control>
+                </nz-form-item>
+            </form>
+        </div>
+    </div>
+</nz-card>

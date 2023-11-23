@@ -1,0 +1,99 @@
+<div class="breadcrumb" style="padding-bottom: 24px;">
+    <nz-breadcrumb>
+        <nz-breadcrumb-item>Train Stations</nz-breadcrumb-item>
+        <nz-breadcrumb-item>List</nz-breadcrumb-item>
+    </nz-breadcrumb>
+</div>
+
+<nz-card nzTitle="List Train Stations">
+    <div style="text-align: right; margin-bottom: 10px;">
+        <button nz-button nzType="primary">
+            <a [routerLink]="'/train-station/add'">+ Add Train Station</a>
+        </button>
+    </div>
+
+    <nz-space style="width: 100%; margin-bottom: 3%;">
+        <nz-input-group nzSearch [nzAddOnAfter]="searchButton"
+            style="padding-right: 20%;">
+            <input type="text" nz-input placeholder="Input name train station"
+                (keydown.enter)="fetchData()"
+                [(ngModel)]="keySearch" />
+        </nz-input-group>
+        <ng-template #searchButton>
+            <button nz-button nzType="default" nzSearch
+                (click)="fetchData()">
+                <span nz-icon nzType="search" nzTheme="outline"></span>
+            </button>
+        </ng-template>
+
+        <button nz-button nzType="default"
+            (click)="fetchData()">Filter:
+        </button>
+        <nz-select [(ngModel)]="filterProperty" style="width: 300px;">
+            <nz-option *ngFor="let property of properties"
+                [nzLabel]="property.label"
+                [nzValue]="property.value">
+            </nz-option>
+        </nz-select>
+
+        <button nz-button nzType="default" style="margin-left: 1%;"
+            (click)="fetchData()">Sort:
+        </button>
+        <nz-select [(ngModel)]="sortDistance" style="width: 350px;">
+            <nz-option nzValue nzLabel="None"></nz-option>
+            <nz-option nzValue="distanceFromStart" nzLabel="Distance From Start"></nz-option>
+            <nz-option nzValue="distanceToEnd" nzLabel="Distance To End"></nz-option>
+        </nz-select>
+    </nz-space>
+
+    <nz-table #basicTable
+        [nzFrontPagination]="false"
+        [nzData]="trainStationList"
+        [nzLoading]="loading"
+        [nzTotal]="total"
+        [(nzPageIndex)]="pageIndex"
+        [(nzPageSize)]="pageSize"
+        (nzPageIndexChange)="onPageIndexChange($event)"
+        (nzPageSizeChange)="onPageSizeChange($event)">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>DOF</th>
+                <th>DOE</th>
+                <th>Property Of Station</th>
+                <th>Note</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of basicTable.data">
+                <td>{{ data.id }}</td>
+                <td>{{ data.nameStation }}</td>
+                <td>{{ data.address }}</td>
+                <td>{{ data.distanceFromStart }}</td>
+                <td>{{ data.distanceToEnd }}</td>
+                <td>
+                    <div
+                        style="color: white; border-radius: 5px; text-align: center; padding: 3px;"
+                        [ngStyle]="getCellStylesOfProperty(data.propertiesOfStation)">
+                        {{ data.propertiesOfStation }}
+                    </div>
+                </td>
+                <td>{{ data.note.length > 30 ? data.note.slice(0, 30) + '...' :
+                    data.note }}</td>
+                <td>
+                    <button [routerLink]="'/train-station/detail/' + data.id"
+                        nz-button nzType="primary">
+                        <span nz-icon nzType="info-circle" nzTheme="outline"></span>
+                    </button>
+                    <button [routerLink]="'/train-station/edit/' + data.id"
+                        nz-button nzType="default" style="margin-left: 5px;">
+                        <span nz-icon nzType="edit" nzTheme="outline"></span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+</nz-card>

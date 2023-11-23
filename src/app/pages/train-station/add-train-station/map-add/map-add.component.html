@@ -1,0 +1,13 @@
+<div id="map-add-station" class="map-add-station"></div>
+
+<div class="select-mode">
+    <label>Select mode: </label>
+    <nz-select name="seleted-mode" id="selected-mode"
+        [(ngModel)]="selectedMode"
+        (ngModelChange)="changeSelectedMode($event)">
+        <nz-option nzValue="none" nzLabel="None"></nz-option>
+        <nz-option nzValue="draw" nzLabel="Draw Polygon"></nz-option>
+        <nz-option nzValue="modify" nzLabel="Modify Polygon"></nz-option>
+    </nz-select>
+
+</div>

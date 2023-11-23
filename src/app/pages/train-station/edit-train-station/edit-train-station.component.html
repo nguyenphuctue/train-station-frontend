@@ -1,0 +1,205 @@
+<div class="breadcrumb" style="padding-bottom: 24px;">
+    <nz-breadcrumb>
+        <nz-breadcrumb-item>Train Stations</nz-breadcrumb-item>
+        <nz-breadcrumb-item>Edit</nz-breadcrumb-item>
+    </nz-breadcrumb>
+</div>
+
+<nz-card nzTitle="Edit Train Station">
+    <div class="container">
+        <form nz-form [nzLayout]="'vertical'" [formGroup]="form"
+            (ngSubmit)="submitForm()">
+            <nz-row>
+                <nz-col nzSpan="12">
+                    <nz-form-item>
+                        <nz-form-label nzFor="name"
+                            [nzRequired]="true">
+                            Name:
+                        </nz-form-label>
+                        <nz-form-control
+                            nzErrorTip="Please input name of train station">
+                            <input nz-input name="name" type="text" id="name"
+                                formControlName="nameStation">
+                        </nz-form-control>
+                    </nz-form-item>
+                </nz-col>
+                <nz-col nzSpan="12">
+                    <nz-form-item>
+                        <nz-form-label nzFor="address"
+                            [nzRequired]="true">
+                            Address:
+                        </nz-form-label>
+                        <nz-form-control
+                            nzErrorTip="Please input address of train station">
+                            <input nz-input name="address" type="text"
+                                id="address"
+                                formControlName="address">
+                        </nz-form-control>
+                    </nz-form-item>
+                </nz-col>
+            </nz-row>
+            <nz-row>
+                <nz-col nzSpan="12">
+                    <nz-form-item>
+                        <nz-form-label nzFor="propertiesOfStation"
+                            [nzRequired]="true">
+                            Properties Of Station:
+                        </nz-form-label>
+                        <nz-form-control>
+                            <nz-select formControlName="propertiesOfStation">
+                                <nz-option *ngFor="let property of properties"
+                                    [nzLabel]="property.label"
+                                    [nzValue]="property.value">
+                                </nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                </nz-col>
+                <nz-col nzSpan="12">
+                    <nz-row>
+                        <nz-col nzSpan="8" style="padding: 0;">
+                            <nz-form-item>
+                                <nz-form-label nzFor="longitude"
+                                    [nzRequired]="true">
+                                    Longitude:
+                                </nz-form-label>
+                                <nz-form-control
+                                    nzErrorTip="Please input longitude of train station">
+                                    <input nz-input name="longitude"
+                                        type="number"
+                                        id="longitude"
+                                        formControlName="longitude">
+                                </nz-form-control>
+                            </nz-form-item>
+                        </nz-col>
+                        <nz-col nzSpan="8" style="padding: 0;">
+                            <nz-form-item>
+                                <nz-form-label nzFor="latitude"
+                                    [nzRequired]="true">
+                                    Latitude:
+                                </nz-form-label>
+                                <nz-form-control
+                                    nzErrorTip="Please input latitude of train station">
+                                    <input nz-input name="latitude"
+                                        type="number"
+                                        id="latitude"
+                                        formControlName="latitude">
+                                </nz-form-control>
+                            </nz-form-item>
+                        </nz-col>
+                        <nz-col nzSpan="8" style="padding: 0;">
+                            <nz-form-label></nz-form-label>
+                            <nz-form-control>
+                                <button nz-button nzType="primary" nzGhost
+                                    type="button"
+                                    (click)="showModal()" style="width: 100%;">
+                                    <span nz-icon nzType="environment"
+                                        nzTheme="outline"></span>
+                                    <span>Choose on map</span>
+                                </button>
+                                <nz-modal [(nzVisible)]="isVisible"
+                                    nzTitle="Map"
+                                    (nzOnCancel)="handleCancel()"
+                                    (nzOnOk)="handleOk()"
+                                    [nzWidth]="1000">
+                                    <ng-container *nzModalContent>
+                                        <app-map-add
+                                            [locationOfTrainStation]="locationOfTrainStation"
+                                            [boundaryOfTrainStation]="boundaryOfTrainStation"
+                                            (locationOfTrainStationChange)="onLocationChange($event)"
+                                            (boundaryOfTrainStationChange)="onBoundaryChange($event)">
+                                        </app-map-add>
+                                    </ng-container>
+                                </nz-modal>
+                            </nz-form-control>
+                        </nz-col>
+                    </nz-row>
+                </nz-col>
+
+            </nz-row>
+            <nz-row>
+                <nz-col nzSpan="12">
+                    <nz-form-item>
+                        <nz-form-label nzFor="distanceFromStart"
+                            [nzRequired]="true">
+                            Distance From Start:
+                        </nz-form-label>
+                        <nz-form-control>
+                            <input nz-input name="distanceFromStart"
+                                type="number"
+                                id="distanceFromStart"
+                                formControlName="distanceFromStart">
+                        </nz-form-control>
+                    </nz-form-item>
+                </nz-col>
+                <nz-col nzSpan="12">
+                    <nz-form-item>
+                        <nz-form-label nzFor="distanceToEnd"
+                            [nzRequired]="true">
+                            Distance To End:
+                        </nz-form-label>
+                        <nz-form-control>
+                            <input nz-input name="distanceToEnd" type="number"
+                                id="distanceToEnd"
+                                formControlName="distanceToEnd">
+                        </nz-form-control>
+                    </nz-form-item>
+                </nz-col>
+            </nz-row>
+            <nz-row>
+                <nz-col nzSpan="24">
+                    <nz-form-item>
+                        <nz-form-label nzFor="note">Note:</nz-form-label>
+                        <nz-form-control>
+                            <textarea nz-input nzType="textarea"
+                                name="note"
+                                id="note" formControlName="note"
+                                rows="6"></textarea>
+                        </nz-form-control>
+                    </nz-form-item>
+                </nz-col>
+            </nz-row>
+            <nz-row>
+                <nz-col nzSpan="24">
+                    <nz-form-item>
+                        <nz-form-label nzFor="image">Image:</nz-form-label>
+                        <nz-form-control>
+                            <div class="clearfix">
+                                <nz-upload
+                                    nzAction="http://192.168.1.201:29083/files"
+                                    nzListType="picture"
+                                    [nzAccept]="'image/png, image/jpeg'"
+                                    [(nzFileList)]="imageList"
+                                    [nzMultiple]="true"
+                                    [nzRemove]="handleImageDelete"
+                                    (nzChange)="handleImageChange($event)">
+                                    <button nz-button type="button">
+                                        <span>
+                                            <span nz-icon nzType="upload"></span>
+                                            Upload
+                                        </span>
+                                    </button>
+                                </nz-upload>
+                            </div>
+                        </nz-form-control>
+                    </nz-form-item>
+                </nz-col>
+            </nz-row>
+            <nz-row>
+                <nz-col nzSpan="24">
+                    <nz-form-item class="form-button">
+                        <button nz-button nzType="default"
+                            style="margin-right: 10px;" type="reset">
+                            <span nz-icon nzType="rollback" nzTheme="outline"></span>
+                            Reset
+                        </button>
+                        <button nz-button nzType="primary" type="submit">
+                            <span nz-icon nzType="save" nzTheme="outline"></span>
+                            Save
+                        </button>
+                    </nz-form-item>
+                </nz-col>
+            </nz-row>
+        </form>
+    </div>
+</nz-card>

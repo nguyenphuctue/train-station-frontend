@@ -1,0 +1,139 @@
+<div class="breadcrumb" style="padding-bottom: 24px;">
+    <nz-breadcrumb>
+        <nz-breadcrumb-item>Technical Status</nz-breadcrumb-item>
+        <nz-breadcrumb-item>Edit</nz-breadcrumb-item>
+    </nz-breadcrumb>
+</div>
+
+<nz-card nzTitle="Edit Technical Status">
+    <div class="container">
+        <form nz-form [nzLayout]="'vertical'" [formGroup]="form"
+            (ngSubmit)="submitForm()">
+            <nz-row>
+                <nz-col nzSpan="12">
+                    <nz-form-item>
+                        <nz-form-label nzFor="trainStation"
+                            [nzRequired]="true">
+                            Train Station:
+                        </nz-form-label>
+                        <nz-form-control>
+                            <nz-select formControlName="trainStation">
+                                <nz-option *ngFor="let station of trainStations"
+                                    [nzLabel]="station.label"
+                                    [nzValue]="station.value">
+                                </nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                </nz-col>
+                <nz-col nzSpan="12">
+                    <nz-form-item>
+                        <nz-form-label nzFor="state"
+                            [nzRequired]="true">
+                            State:
+                        </nz-form-label>
+                        <nz-form-control>
+                            <nz-select formControlName="state">
+                                <nz-option *ngFor="let state of states"
+                                    [nzLabel]="state.label"
+                                    [nzValue]="state.value">
+                                </nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                </nz-col>
+            </nz-row>
+            <nz-row>
+                <nz-col nzSpan="12">
+                    <nz-form-item>
+                        <nz-form-label nzFor="periodOfChecking"
+                            [nzRequired]="true">
+                            Period Of Checking:
+                        </nz-form-label>
+                        <nz-form-control>
+                            <input nz-input name="periodOfChecking"
+                                type="number"
+                                formControlName="periodOfChecking">
+                        </nz-form-control>
+                    </nz-form-item>
+                </nz-col>
+                <nz-col nzSpan="12">
+                    <nz-form-item>
+                        <nz-form-label nzFor="dateChecking"
+                            [nzRequired]="true">
+                            Date Checking:
+                        </nz-form-label>
+                        <nz-form-control>
+                            <nz-date-picker style="width: 100%"
+                                formControlName="dateChecking"></nz-date-picker>
+                        </nz-form-control>
+                    </nz-form-item>
+                </nz-col>
+            </nz-row>
+            <nz-row>
+                <nz-col nzSpan="24">
+                    <nz-form-item>
+                        <nz-form-label nzFor="description">Description:</nz-form-label>
+                        <nz-form-control>
+                            <textarea nz-input
+                                name="description"
+                                formControlName="description"
+                                rows="6">
+                            </textarea>
+                        </nz-form-control>
+                    </nz-form-item>
+                </nz-col>
+            </nz-row>
+            <nz-row>
+                <nz-col nzSpan="24">
+                    <nz-form-item>
+                        <nz-form-label>Request Repair: &nbsp;
+                            <label nz-checkbox formControlName="requestRepair"></label>
+                        </nz-form-label>
+                    </nz-form-item>
+                </nz-col>
+            </nz-row>
+            <nz-row>
+                <nz-col nzSpan="24">
+                    <nz-form-item>
+                        <nz-form-label nzFor="image">Image:</nz-form-label>
+                        <nz-form-control>
+                            <div class="clearfix">
+                                <nz-upload
+                                    nzAction="http://192.168.1.201:29083/files"
+                                    nzListType="picture"
+                                    [nzAccept]="'image/png, image/jpeg, image/jpg'"
+                                    [(nzFileList)]="imageList"
+                                    [nzMultiple]="true"
+                                    [nzRemove]="handleImageDelete"
+                                    (nzChange)="handleImageChange($event)">
+                                    <button nz-button type="button">
+                                        <span>
+                                            <span nz-icon nzType="upload"></span>
+                                            Upload
+                                        </span>
+                                    </button>
+                                </nz-upload>
+                            </div>
+                        </nz-form-control>
+                    </nz-form-item>
+                </nz-col>
+            </nz-row>
+            <nz-row>
+                <nz-col nzSpan="24">
+                    <nz-form-item class="form-button">
+                        <button nz-button nzType="default"
+                            style="margin-right: 10px;" type="reset">
+                            <span nz-icon nzType="rollback" nzTheme="outline"></span>
+                            Reset
+                        </button>
+                        <button nz-button nzType="primary" type="submit">
+                            <span nz-icon nzType="save" nzTheme="outline"></span>
+                            Save
+                        </button>
+                    </nz-form-item>
+                </nz-col>
+            </nz-row>
+        </form>
+    </div>
+</nz-card>

@@ -1,0 +1,42 @@
+<nz-header>
+  <div class="app-header">
+    <span class="header-trigger" (click)="toggleCollapsed()">
+      <span class="trigger"
+        nz-icon
+        [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></span>
+    </span>
+    <span style="float: right; padding-right: 30px;">
+      <span class="header-language">
+        <img nz-image src="../../../assets/flag/vietnam.png" alt
+          style="padding-right: 10px;" />
+        <img nz-image src="../../../assets/flag/united-kingdom.png" alt />
+      </span>
+      <span class="header-notice">
+        <nz-badge [nzCount]="5">
+          <img nz-image src="../../../assets/bell.png" alt />
+        </nz-badge>
+      </span>
+      <span class="header-account">
+        <nz-avatar nzIcon="user" style="background-color:#87d068;"
+          nz-dropdown [nzDropdownMenu]="menu" nzTrigger="click">
+        </nz-avatar>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu nzSelectable>
+            <li nz-menu-item [routerLink]="'user/detail'">
+              <span nz-icon nzType="user" nzTheme="outline" style="padding-right: 5px;"></span>
+                User Information
+            </li>
+            <li nz-menu-item>
+              <span nz-icon nzType="setting" nzTheme="outline" style="padding-right: 5px;"></span>
+              Setting
+            </li>
+            <li nz-menu-item (click)="logout()">
+              <span nz-icon nzType="logout" nzTheme="outline" style="padding-right: 5px;"></span>
+              Logout
+            </li>
+          </ul>
+        </nz-dropdown-menu>
+      </span>
+    </span>
+  </div>
+</nz-header>

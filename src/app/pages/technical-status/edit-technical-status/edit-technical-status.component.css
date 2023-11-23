@@ -1,0 +1,9 @@
+nz-col {
+    padding: 0 10px 0 10px;
+}
+
+.form-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}

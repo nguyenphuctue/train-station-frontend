@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  train-station-frontend:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: tuenp-train-station-frontend
+    ports:
+      - 29200:80
+    networks:
+      - tuenp-network
+
+networks:
+  tuenp-network:
+    external: 
+      name: tuenp-network

@@ -1,0 +1,120 @@
+<div class="breadcrumb" style="padding-bottom: 24px;">
+    <nz-breadcrumb>
+        <nz-breadcrumb-item>Train Stations</nz-breadcrumb-item>
+        <nz-breadcrumb-item>History Modified</nz-breadcrumb-item>
+        <nz-breadcrumb-item>Details</nz-breadcrumb-item>
+    </nz-breadcrumb>
+</div>
+
+<nz-card nzTitle="Details History Modified Station">
+    <div class="container">
+        <div class="info">
+            <form nz-form [nzLayout]="'vertical'">
+                <nz-form-item style="margin-bottom: 0px;">
+                    <nz-form-control class="actions">
+                        <button nz-button nzType="default"
+                            routerLink="/train-station/history/list">
+                            <span nz-icon nzType="left"></span>
+                            Back to list
+                        </button>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label>Map</nz-form-label>
+                    <nz-form-control>
+                        <div class="map-detail">
+                            <app-map-detail-history
+                                [trainStation]="historyModifiedStation">
+                            </app-map-detail-history>
+                        </div>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzFor="name">Name</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input name="name" type="text" readonly
+                            [(ngModel)]="historyModifiedStation.nameStation">
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzFor="address">Address</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input name="address" type="text" readonly
+                            [(ngModel)]="historyModifiedStation.address">
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzFor="longitude">Longitude</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input name="longitude" type="number" readonly
+                            [(ngModel)]="historyModifiedStation.longitude">
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzFor="latitude">Latitude</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input name="latitude" type="number" readonly
+                            [(ngModel)]="historyModifiedStation.latitude">
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzFor="distanceFromStart">Distance
+                        From Start</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input name="distanceFromStart" type="number"
+                            readonly
+                            [(ngModel)]="historyModifiedStation.distanceFromStart">
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzFor="distanceToEnd">Distance To
+                        End</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input name="distanceToEnd" type="number"
+                            readonly
+                            [(ngModel)]="historyModifiedStation.distanceToEnd">
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzFor="properties">Properties
+                        Of Station</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input name="properties" type="text" readonly
+                            [(ngModel)]="historyModifiedStation.propertiesOfStation">
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzFor="note">Note</nz-form-label>
+                    <nz-form-control>
+                        <textarea nz-input name="note" nzType="textarea"
+                            [(ngModel)]="historyModifiedStation.note" readonly></textarea>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label>Image</nz-form-label>
+                    <nz-form-control>
+                        <img class="image-item" nz-image
+                            *ngFor="let url of imageUrls" [nzSrc]="url" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control class="actions">
+                        <button nz-button nzType="primary" nzDanger
+                            (click)="showModalConfrimDelete()">
+                            <span nz-icon nzType="delete" nzTheme="outline"></span>
+                            Delete
+                        </button>
+                        <nz-modal [(nzVisible)]="isVisibleConfirmDelete"
+                            nzTitle="Confirm Delete Train Station"
+                            (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+                            <ng-container *nzModalContent>
+                                <p>Are you sure you want to delete the train
+                                    staion?</p>
+                            </ng-container>
+                        </nz-modal>
+                    </nz-form-control>
+                </nz-form-item>
+            </form>
+        </div>
+    </div>
+</nz-card>

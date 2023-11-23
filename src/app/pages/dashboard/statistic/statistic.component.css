@@ -1,0 +1,12 @@
+.main-title {
+    padding: 16px 24px 16px 24px;
+    font-weight: 500;
+    font-size: 16px;
+    background-color: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.main-content {
+    padding: 24px;
+    background-color: white;
+}

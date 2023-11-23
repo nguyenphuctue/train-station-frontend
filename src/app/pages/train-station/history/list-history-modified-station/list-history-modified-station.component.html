@@ -1,0 +1,65 @@
+<div class="breadcrumb" style="padding-bottom: 24px;">
+    <nz-breadcrumb>
+        <nz-breadcrumb-item>Train Stations</nz-breadcrumb-item>
+        <nz-breadcrumb-item>History Modified</nz-breadcrumb-item>
+        <nz-breadcrumb-item>List</nz-breadcrumb-item>
+    </nz-breadcrumb>
+</div>
+
+<nz-card nzTitle="List History Modified Stations">
+
+    <nz-space style="width: 100%; margin-bottom: 3%;">
+        <nz-input-group nzSearch [nzAddOnAfter]="searchButton"
+            style="padding-right: 20%;">
+            <input type="text" nz-input placeholder="Input name train station"
+                (keydown.enter)="fetchData()"
+                [(ngModel)]="keySearch" />
+        </nz-input-group>
+        <ng-template #searchButton>
+            <button nz-button nzType="default" nzSearch
+                (click)="fetchData()">
+                <span nz-icon nzType="search" nzTheme="outline"></span>
+            </button>
+        </ng-template>
+
+        <button nz-button nzType="default" style="margin-left: 1%;"
+            (click)="sortByNameStaion()">Sort by name train station
+            <span nz-icon nzType="sort-ascending" nzTheme="outline"></span>
+        </button>
+    </nz-space>
+
+    <nz-table #basicTable
+        [nzFrontPagination]="false"
+        [nzData]="historyModifiedStation"
+        [nzLoading]="loading"
+        [nzTotal]="total"
+        [(nzPageIndex)]="pageIndex"
+        [(nzPageSize)]="pageSize"
+        (nzPageIndexChange)="onPageIndexChange($event)"
+        (nzPageSizeChange)="onPageSizeChange($event)">
+        <thead>
+            <tr>
+                <th>Train Station ID</th>
+                <th>Name Station</th>
+                <th>Modified At</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of basicTable.data">
+                <td>{{ data.trainStationResponse.id }}</td>
+                <td>{{ data.nameStation }}</td>
+                <td>{{ data.createdAt | date:'HH:mm:ss dd-MM-yyyy' }}</td>
+                <td>{{ data.description }}</td>
+                <td>
+                    <button
+                        [routerLink]="'/train-station/history/detail/' + data.id"
+                        nz-button nzType="primary">
+                        <span nz-icon nzType="info-circle" nzTheme="outline"></span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+</nz-card>

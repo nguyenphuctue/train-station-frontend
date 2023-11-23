@@ -1,0 +1,76 @@
+<nz-sider class="menu-sidebar"
+            nzCollapsible
+            nzWidth="256px"
+            nzBreakpoint="md"
+            [(nzCollapsed)]="isCollapsed"
+            [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a target="_blank">
+        <img src="../../../assets/logo.png" alt="logo">
+        <h1>Manager Train Stations</h1>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/dashboard/welcome">Welcome</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/dashboard/statistic">Statistic</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/dashboard/calendar">Calendar</a>
+          </li>
+        </ul>
+      </li>
+      
+      <li nz-submenu nzOpen nzTitle="Train Stations" nzIcon="car">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/train-station/map">Train station on map</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/train-station/list">List train stations</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/train-station/add">Create train station</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/train-station/history/list">History modified</a>
+          </li>
+        </ul>
+      </li>
+
+      <li nz-submenu nzOpen nzTitle="Technical Status" nzIcon="profile">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/technical-status/list">List technical status</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/technical-status/add">Create technical status</a>
+          </li>
+        </ul>
+      </li>
+
+      <li nz-submenu nzOpen nzTitle="Request Repairs" nzIcon="tool">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/request-repair/list">List request repair</a>
+          </li>
+        </ul>
+      </li>
+
+      <li nz-submenu nzOpen nzTitle="Report" nzIcon="reconciliation">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/report/list">List report</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/report/add">Create report</a>
+          </li>
+        </ul>
+      </li>
+
+    </ul>
+  </nz-sider>

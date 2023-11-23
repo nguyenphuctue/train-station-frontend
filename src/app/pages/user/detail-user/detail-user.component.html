@@ -1,0 +1,52 @@
+<div class="breadcrumb" style="padding-bottom: 24px;">
+    <nz-breadcrumb>
+        <nz-breadcrumb-item>User</nz-breadcrumb-item>
+        <nz-breadcrumb-item>Information</nz-breadcrumb-item>
+    </nz-breadcrumb>
+</div>
+
+<nz-card nzTitle="User Information" style="height: 80vh;">
+    <div class="user-detail-container">
+        <div class="user-detail-content">
+            <div nz-row>
+                <div nz-col nzSpan="8" style="padding-right: 10px;">
+                    <div class="profile-image">
+                        <nz-avatar [nzSize]="64" style="width: 100px; height: 100px;" nzSrc="https://source.unsplash.com/800x600/?person"></nz-avatar>
+                    </div>
+                    <div>
+                        <hr>
+                        <span>
+                            <span nz-icon nzType="key" nzTheme="outline"></span>
+                            Change password
+                        </span>
+                        <hr>
+                        <span (click)="logout()">
+                            <span nz-icon nzType="logout" nzTheme="outline"></span>
+                            Logout
+                        </span>
+                        <hr>
+                    </div>
+                </div>
+                <div nz-col nzSpan="16">
+                    <nz-descriptions nzBordered [nzSize]="'small'">
+                        <nz-descriptions-item nzTitle="Full name" [nzSpan]="3">Nguyen
+                            Phuc Tue</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Username" [nzSpan]="3">tuenp</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Email" [nzSpan]="3">tuenguyen29102001@gmail.com</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Phone" [nzSpan]="3">0919032910</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Address" [nzSpan]="3">Lang
+                            Ha,
+                            Dong Da, Ha Noi</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Birthday" [nzSpan]="3">29/20/2001</nz-descriptions-item>
+                    </nz-descriptions>
+                </div>
+            </div>
+            <div style="text-align: end;">
+                <button nz-button nzType="primary">
+                    <span nz-icon nzType="edit" nzTheme="outline"></span>
+                    Edit Profile
+                </button>
+            </div>
+        </div>
+    </div>
+</nz-card>

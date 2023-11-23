@@ -1,0 +1,79 @@
+<div class="breadcrumb" style="padding-bottom: 24px;">
+    <nz-breadcrumb>
+        <nz-breadcrumb-item>Dashboard</nz-breadcrumb-item>
+        <nz-breadcrumb-item>Statistic</nz-breadcrumb-item>
+    </nz-breadcrumb>
+</div>
+
+<div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+    <div nz-col class="gutter-row" [nzSpan]="6">
+        <div class="inner-box">
+            <nz-card
+                style="color:white; background-color: #28a745; border-radius: 5px;">
+                <div>
+                    <p style="font-size: xx-large; margin-bottom: 0px;">
+                        <i class="fa fa-train"></i>
+                        10
+                    </p>
+                    <p style="margin-bottom: 0px;">TRAIN STATIONS</p>
+                </div>
+            </nz-card>
+        </div>
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="6">
+        <div class="inner-box">
+            <nz-card
+                style="color:white; background-color: #17a2b8; border-radius: 5px;">
+                <p style="font-size: xx-large; margin-bottom: 0px;">
+                    <i class="fa fa-user"></i>
+                    5000
+                </p>
+                <p style="margin-bottom: 0px;">PASSENGERS</p>
+            </nz-card>
+        </div>
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="6">
+        <div class="inner-box">
+            <nz-card
+                style="color:white; background-color: #ffc107; border-radius: 5px;">
+                <p style="font-size: xx-large; margin-bottom: 0px;">
+                    <i class="fa fa-gavel"></i>
+                    30
+                </p>
+                <p style="margin-bottom: 0px;">REQUEST REPAIR</p>
+            </nz-card>
+        </div>
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="6">
+        <div class="inner-box">
+            <nz-card
+                style="color:white; background-color: #dc3545; border-radius: 5px;">
+                <p style="font-size: xx-large; margin-bottom: 0px;">
+                    <i class="	fa fa-file-text"></i>
+                    20
+                </p>
+                <p style="margin-bottom: 0px;">REPORT</p>
+            </nz-card>
+        </div>
+    </div>
+</div>
+
+<div nz-row>
+    <!-- <div class="bar-chart-container" nz-col
+        nzXs="24" nzSm="24" nzMd="24" nzLg="18" nzXl="18">
+        <canvas id="passenger-bar-chart"></canvas>
+    </div> -->
+    <!-- <div class="bar-chart-container" nz-col
+        nzXs="24" nzSm="24" nzMd="24" nzLg="6" nzXl="6">
+        <canvas id="passenger-pie-chart"></canvas>
+    </div> -->
+</div>
+
+<div style="margin-top: 16px;">
+    <div class="main-title">Train Station On Map</div>
+    <div class="main-content">
+        <div class="bar-chart-container">
+            <canvas id="passenger-bar-chart"></canvas>
+        </div>
+    </div>
+</div>
